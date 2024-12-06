@@ -1,0 +1,54 @@
+﻿<Window x:Class="ClassRoomAttendanceCameraDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:ClassRoomAttendanceCameraDemo.ViewModel"
+        xmlns:helpers="clr-namespace:ClassRoomAttendanceCameraDemo.Helpers"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="470" Width="800"
+        d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="Width" Value="500"></Setter>
+                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="10,0,10,0" ></Setter>
+            </Style>
+        </Grid.Resources>
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Margin" Value="0,10,0,0"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="             输入地址:"></TextBlock>
+                <TextBox Text="{Binding InputAddress}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="人脸识别模型地址:"></TextBlock>
+                <TextBox Text="{Binding RecognModeAddress}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="人脸对比模型地址:"></TextBlock>
+                <TextBox Text="{Binding CompareModeAddress}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="         底库文件夹:"></TextBlock>
+                <TextBox Text="{Binding FaceBaseDir}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="            推理设备:"></TextBlock>
+               <ComboBox Width="100" SelectedItem="{Binding SelectDevice}" ItemsSource="{Binding DeviceCollection}"></ComboBox>
+                <Button Height="30" Margin="10,0" Content="开始识别" Command="{Binding StartReadCommand}"></Button>
+            </StackPanel>
+
+            <RichTextBox helpers:RichTextBoxHelper.Document="{Binding Document}" Height="200" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>
